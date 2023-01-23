@@ -11,5 +11,9 @@ export const Category = model(
       type: String,
       required: true,
     },
+    iconPathLight: {
+      type: String,
+      required: true,
+    },
   })
 );
