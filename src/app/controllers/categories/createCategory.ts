@@ -3,9 +3,11 @@ import { Category } from "../../models/Category";
 
 export const createCategory = async (req: Request, res: Response) => {
   try {
-    const { name, icon } = req.body;
+    const iconPath = req.file?.filename;
 
-    if (!name || !icon) {
+    const { name } = req.body;
+
+    if (!name || !iconPath) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
@@ -15,7 +17,7 @@ export const createCategory = async (req: Request, res: Response) => {
       return res.status(400).json({ error: "Category already exists" });
     }
 
-    const category = await Category.create({ name, icon });
+    const category = await Category.create({ name, iconPath });
     res.status(201).json(category);
   } catch (error) {
     console.log(error);

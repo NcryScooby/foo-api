@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import path from "node:path";
 import dotenv from "dotenv";
+import cors from "cors";
 import { router } from "./router";
 dotenv.config();
 
@@ -17,6 +18,13 @@ mongoose
     app.use(
       "/uploads",
       express.static(path.resolve(__dirname, "..", "uploads"))
+    );
+
+    app.use(
+      cors({
+        origin: "http://localhost:3000",
+        credentials: true,
+      })
     );
 
     app.use(express.json());

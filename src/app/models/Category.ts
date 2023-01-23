@@ -7,7 +7,7 @@ export const Category = model(
       type: String,
       required: true,
     },
-    icon: {
+    iconPath: {
       type: String,
       required: true,
     },
