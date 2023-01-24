@@ -1,16 +1,14 @@
 import express from "express";
 import mongoose from "mongoose";
 import path from "node:path";
-import dotenv from "dotenv";
 import cors from "cors";
 import { router } from "./router";
-dotenv.config();
-
-const MONGO_URI = process.env.MONGO_URI as string;
 
 mongoose.set("strictQuery", true);
 mongoose
-  .connect(MONGO_URI)
+  .connect(
+    "mongodb+srv://root:root@foo.zozg6ht.mongodb.net/?retryWrites=true&w=majority"
+  )
   .then(() => {
     console.log("Connected to database");
   })
