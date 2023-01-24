@@ -8,6 +8,7 @@ import { listProducts } from "./app/controllers/products/listProducts";
 import { createProduct } from "./app/controllers/products/createProduct";
 import { listProductByCategory } from "./app/controllers/products/listProductByCategory";
 import { listProductById } from "./app/controllers/products/listProductById";
+import { sendMessage } from "./app/controllers/messages/sendMessage";
 
 export const router = Router();
 
@@ -40,3 +41,6 @@ router.get("/products/categories/:categoryId", listProductByCategory);
 
 // Get Product by Id
 router.get("/products/:productId", listProductById);
+
+// Send Message
+router.post("/messages", sendMessage);
