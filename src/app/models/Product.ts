@@ -19,6 +19,10 @@ export const Product = model(
       type: Number,
       required: true,
     },
+    unitOfMeasurement: {
+      type: String,
+      required: true,
+    },
     ingredients: {
       required: true,
       type: [

@@ -5,9 +5,23 @@ export const createProduct = async (req: Request, res: Response) => {
   try {
     const imagePath = req.file?.filename;
 
-    const { name, description, price, ingredients, category } = req.body;
+    const {
+      name,
+      description,
+      price,
+      ingredients,
+      category,
+      unitOfMeasurement,
+    } = req.body;
 
-    if (!name || !description || !imagePath || !price || !category) {
+    if (
+      !name ||
+      !description ||
+      !imagePath ||
+      !price ||
+      !category ||
+      !unitOfMeasurement
+    ) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
@@ -22,6 +36,7 @@ export const createProduct = async (req: Request, res: Response) => {
       description,
       imagePath,
       price: Number(price),
+      unitOfMeasurement,
       ingredients: ingredients ? JSON.parse(ingredients) : [],
       category,
     });
