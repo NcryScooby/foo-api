@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-
 import { Product } from "../../models/Product";
+import { StatusCodes } from "http-status-codes";
 
 export const listProductById = async (req: Request, res: Response) => {
   const { productId } = req.params;
@@ -9,12 +9,16 @@ export const listProductById = async (req: Request, res: Response) => {
     const product = await Product.findById(productId);
 
     if (!product) {
-      return res.status(404).json({ error: "Product not found" });
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .json({ error: "Product not found" });
     }
 
-    res.status(200).json(product);
+    res.status(StatusCodes.OK).json(product);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: "Internal server error" });
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: "Internal server error" });
   }
 };
